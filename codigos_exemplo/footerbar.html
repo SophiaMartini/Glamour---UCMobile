@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>footerbar</title>
+</head>
+
+<!--Favor dividir o codigo e colocar em seus devidos codigos (css no css, js no js e etc)-->
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: white;
+}
+.navigation {
+    bottom: 0;
+    border-top: 1px solid #ffd9c2 ;
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navigation ul {
+    display: flex;
+}
+
+.navigation ul li {
+    margin: 0px 30px;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    list-style: none;
+    z-index: 1;
+}
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 80px;
+    font-size: 1.5em;
+    text-align: center;
+    color: #ffbfbf;
+    transition: .5s;
+}
+.navigation ul li.active a .icon {
+    transform: translateY(-35px);
+    color: #c45258;
+}
+.navigation ul li a .text {
+    position: absolute;
+    color: #c45258;
+    font-weight: 400;
+    font-size: .75em;
+    letter-spacing: .05em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .5s;
+}
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+.navigation ul li a .circle {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    border: 1.8px solid #c45258;
+    transform: translateY(-37px) scale(0);
+}
+.navigation ul li.active a .circle {
+    transition: .5s;
+    transition-delay: .5s;
+    transform: translateY(-37px) scale(1);
+}
+
+.indicator {
+    background: transparent;
+}
+
+.active.indicator {
+    position: absolute;
+    top: -46.2%;
+    width: 70px;
+    height: 70px;
+    background: #ffbfbf;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+</style>
+
+<body>
+    <div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="catalogo.html">
+                    <span class="icon">
+                        <i class="fa fa-list"></i>
+                    </span>
+                    <span class="text">Catálogo</span>
+                    <span class="circle"></span>
+                    <div class="indicator"></div>
+                </a>
+                
+            </li>
+            <li class="list">
+                <a href="agendamentos.html">
+                    <span class="icon">
+                        <i class="fa fa-calendar-days"></i>
+                    </span>
+                    <span class="text">Agendamento</span>
+                    <span class="circle"></span>
+                    <div class="indicator"></div>
+                </a>
+                
+            </li>
+            <li class="list">
+                <a href="perfil.html">
+                    <span class="icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <span class="text">Perfil</span>
+                    <span class="circle"></span>
+                    <div class="indicator"></div>
+                </a>
+            </li>
+            
+
+        </ul>
+    </div>
+</body>
+
+<script>
+    const list = document.querySelectorAll('.list');
+function activeLink() {
+    list.forEach((item) =>
+    item.classList.remove('active'));
+    this.classList.add('active');
+}
+list.forEach((item) =>
+item.addEventListener('click',activeLink));
+
+</script>
+</html>
