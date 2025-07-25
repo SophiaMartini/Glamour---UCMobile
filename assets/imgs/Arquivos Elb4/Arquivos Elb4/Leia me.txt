@@ -1,0 +1,11 @@
+Dentro desta pasta estão os arquivos, o programa de pc e o vídeo tutorial do ELB4.
+
+
+Importante:
+
+SEMPRE FAÇA UM BACKUP DA SUA DLL ORIGINAL ANTES DE SUBSTITUIR.
+
+Créditos:
+
+Vídeo por: ELB4
+Distribuído por: EI_G4MET
