@@ -11,6 +11,7 @@
   display: flex;
   transition: transform 0.5s ease;
   touch-action: pan-y;
+  outline: 0 none;
 }
 
 .carrossel-item {
@@ -56,4 +57,9 @@
 }
 .carrossel-dots button.ativo {
   background-color: #c45258;
+}
+
+.principais-servicos {
+  margin: 25px;
+
 }
