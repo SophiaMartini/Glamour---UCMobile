@@ -1,14 +1,11 @@
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; 
     margin: 0;
     font-family: "poppins", sans-serif;
 }
 
 body{   
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    display: block;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; 
@@ -22,8 +19,9 @@ body::-webkit-scrollbar {
 }
 
 main {
+   padding: 70px 0px 90px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     min-height: calc(100vh - 120px);
 }
 
@@ -33,10 +31,12 @@ header {
     top: 0;
     position: fixed;
     display: flex;
-    padding: 20px 30px ;
+    padding: 10px 20px ;
     width: 100%;
     height: 50px;
     justify-content: space-between;
+    left: 0;
+    right: 0;
  
 }
 
@@ -54,9 +54,11 @@ header {
 /*footer*/
 #navigation {
     bottom: 0;
+    right: 0;
+    left: 0;
     border-top: 2px solid #c45258 ;
     position: fixed;
-    width: 85%;
+    width: 100%;
     height: 70px;
     background: #fff;
     display: flex;
@@ -129,4 +131,13 @@ header {
     height: 50px;
     border-radius: 50%;
     border: 3px solid #c45258;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+a {
+    text-decoration: none;
 }
