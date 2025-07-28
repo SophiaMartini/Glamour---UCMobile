@@ -107,7 +107,7 @@ input:-webkit-autofill:active {
     .row {
       display: flex;
       font-size: 18px;
-      margin: 30px 10px;
+      margin: 20px 10px;
     }
 
     .row a {
