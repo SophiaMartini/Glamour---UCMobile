@@ -12,47 +12,38 @@
     <link rel=" stylesheet" href="css/login.css">
     <script src="js/login.js" defer></script>
 </head>
-<body>
-    <!--footer bar blz nao apaga-->
-    <div class="navigation">
-        <ul>
-            <li class="list active">
-                <a href="catalogo.html">
-                    <span class="text">Catálogo</span>
-                    <span class="circle"><div class="indicator"></div></span>
-                     <span class="icon">
-                        <i class="fa fa-list"></i>
-                    </span>
-                </a>
-                
-            </li>
-            <li class="list">
-                <a href="agendamentos.html">
-                    <span class="icon">
-                        <i class="fa fa-calendar-days"></i>
-                    </span>
-                    <span class="text">Agendamento</span>
-                    <span class="circle"><div class="indicator"></div></span>
-                    
-                </a>
-                
-            </li>
-            <li class="list">
-                <a href="perfil.html">
-                    <span class="icon">
-                        <i class="fa fa-user"></i>
-                    </span>
-                    <span class="text">Perfil</span>
-                    <span class="circle"><div class="indicator"></div></span>
-                    
-                </a>
-            </li>
-            
-    
-        </ul>
+<body> 
+   <a href="entrar.html">
+      <button class="back-button">
+        <i class="fa-solid fa-circle-arrow-left"></i> 
+      </button>
+   </a> 
+
+<div class="login-container">
+
+   <h2>Olá!<br>Novamente.</h2>
+  <img src="assets/logo/logo-sozinha.png" alt="">
+
+  <div class="form">
+  
+    <div class="input-entrada"> 
+        <i class="fa-solid fa-user"></i>
+        <input type="email" placeholder="email ou número de telefone" required>
     </div>
 
+    <div class="input-entrada"> 
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" placeholder="senha" required>
+    </div>
 
+    <label><input type="checkbox">Lembre-se de mim</label>
 
+    <button class="btn" type="submit">ENTRAR</button>
+  
+  <div class="row">
+      <a href="registrar.html"><button class="row">Não tenho conta</button></a>
+      <a href="novasenha.html"><button class="row">Esqueci minha senha</button></a>
+    </div>
+</div>
 </body>
 </html>
