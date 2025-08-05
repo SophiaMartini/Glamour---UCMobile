@@ -16,17 +16,18 @@
     <script src="js/todos.js" defer></script>
 </head>
 <body><div id="navigation"></div>
-    <main>
+  <main>
 
-       <section class="carrossel"><!--seção do carrossel-->
+    <section class="carrossel"><!--seção do carrossel-->
       <div class="carrossel-container">
-        <button class="carrossel-btn anterior"><i class="fa-solid fa-circle-arrow-left"></i><button>
+      <button class="carrossel-btn anterior"><i class="fa-solid fa-circle-arrow-left"></i></button>
 
         <div class="carrossel-slide" id="carrossel">
-          <div class="carrossel-item"><img src="assets/imgs/EstéticaRevigorada.png" alt=""></div>
-          <div class="carrossel-item"><img src="assets/imgs/CuidadosComAPele.png" alt=""></div>
-          <div class="carrossel-item"><img src="assets/imgs/ImagemSalão.png" alt=""></div>
-          <div class="carrossel-item"><img src="assets/imgs/servicos.png" alt=""></div>
+          <div class="carrossel-item"><img src="assets/imgs/slidePromo.png" alt=""></div>
+          <div class="carrossel-item"><img src="assets/imgs/Slide1.png" alt=""></div>
+          <div class="carrossel-item"><img src="assets/imgs/slide2.png" alt=""></div>
+          <div class="carrossel-item"><img src="assets/imgs/slide3.png" alt=""></div>
+          <div class="carrossel-item"><img src="assets/imgs/slide4.png" alt=""></div>
         </div>
 
         <button class="carrossel-btn proximo"><i class="fa-solid fa-circle-arrow-right"></i></button>
@@ -35,21 +36,46 @@
       <div class="carrossel-dots" id="carrossel-dots"></div>
     </section>
 
+    
     <section class="principais-servicos">
       <h2>Principais Serviços</h2>
+
       <div class="servicos-container">
 
         <div class="servico-item">
           <img src="" alt="">
-          <span class="descricao-servico">
-            <div class="titulo"></div>
-          </span>
+          <p>Corte de Cabelo</p>
+        </div>
+
+        <div class="servico-item">
+          <img src="" alt="">
+          <p>Maquiagem</p>
+        </div>
+
+        <div class="servico-item">
+          <img src="" alt="">
+          <p>Mani e Pedicure</p>
+        </div>
+
+        <div class="servico-item" >
+          <img src="" alt="">
+          <p>SkinCare</p>
         </div>
 
       </div>
     </section>
 
+    <div class="modal" id="modal_servico">
+      <div class="modal-content">
+        <span class="fechar">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <h3 id="titulo_servico"></h3>
+        <p id="detalhes_servico"></p>
+        <button id="btn_agendar">Agendar</button>
+      </div>
+    </div>
     
-    </main>    
-    </body>
+  </main>    
+</body>
 </html>
