@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salão de Beleza - Serviços</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+
+.app-container {
+    max-width: 414px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Services Container */
+.services-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Service Card */
+.service-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #ff6b6b;
+}
+
+.service-card:active {
+    transform: translateY(-2px);
+}
+
+.service-image {
+    margin-bottom: 15px;
+}
+
+.service-image i {
+    font-size: 40px;
+    color: #ff6b6b;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.service-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.service-category {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.service-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff6b6b;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+    overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+
+.close:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 30px 20px 20px;
+    text-align: center;
+}
+
+.modal-image {
+    margin-bottom: 15px;
+}
+
+.modal-image i {
+    font-size: 50px;
+    color: white;
+}
+
+.modal-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.modal-category,
+.modal-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.modal-category {
+    color: #666;
+    font-size: 14px;
+}
+
+.modal-price {
+    color: #ff6b6b;
+    font-size: 18px;
+}
+
+.modal-description h4 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+.modal-description p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.modal-footer {
+    padding: 0 25px 25px;
+}
+
+.schedule-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.schedule-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.schedule-btn:active {
+    transform: translateY(0);
+}
+
+/* Scheduling Page */
+.scheduling-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.scheduling-page.active {
+    transform: translateX(0);
+}
+
+.hidden {
+    display: none;
+}
+
+.scheduling-header {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.scheduling-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.scheduling-content {
+    padding: 25px;
+}
+
+.selected-service {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.selected-service h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.selected-service p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff6b6b;
+}
+
+.scheduling-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.confirm-btn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.confirm-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 768px;
+    }
+    
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .service-card {
+        padding: 25px;
+    }
+    
+    .modal-content {
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+</style>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-cut"></i> Salão de Beleza</h1>
+            <p>Nossos Serviços</p>
+        </header>
+
+        <!-- Services Grid -->
+        <main class="services-container">
+            <div class="service-card" data-service="corte-cabelo">
+                <div class="service-image">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Corte de Cabelo</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 45,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="manicure">
+                <div class="service-image">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Manicure</h3>
+                    <p class="service-category">Unhas</p>
+                    <p class="service-price">R$ 25,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="escova">
+                <div class="service-image">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Escova</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 35,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="sobrancelha">
+                <div class="service-image">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Design de Sobrancelha</h3>
+                    <p class="service-category">Estética</p>
+                    <p class="service-price">R$ 20,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="hidratacao">
+                <div class="service-image">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Hidratação</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 60,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="pedicure">
+                <div class="service-image">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Pedicure</h3>
+                    <p class="service-category">Unhas</p>
+                    <p class="service-price">R$ 30,00</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div id="serviceModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-header">
+                    <div class="modal-image">
+                        <i id="modalIcon" class="fas fa-cut"></i>
+                    </div>
+                    <h2 id="modalTitle">Título do Serviço</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-info">
+                        <p class="modal-category">
+                            <i class="fas fa-tag"></i>
+                            <span id="modalCategory">Categoria</span>
+                        </p>
+                        <p class="modal-price">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span id="modalPrice">R$ 0,00</span>
+                        </p>
+                    </div>
+                    <div class="modal-description">
+                        <h4>Descrição</h4>
+                        <p id="modalDescription">Descrição do serviço...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="scheduleBtn" class="schedule-btn">
+                        <i class="fas fa-calendar-plus"></i>
+                        Agendar Serviço
+                    </button>
+                </div>
+            </div>
+        </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+    
+<script>
+
+
+const servicesData = {
+    'corte-cabelo': {
+        title: 'Corte de Cabelo',
+        category: 'Cabelo',
+        price: 'R$ 45,00',
+        icon: 'fas fa-cut',
+        description: 'Corte moderno e personalizado de acordo com o formato do seu rosto e estilo pessoal. Inclui lavagem, corte e finalização com produtos profissionais.'
+    },
+    'manicure': {
+        title: 'Manicure',
+        category: 'Unhas',
+        price: 'R$ 25,00',
+        icon: 'fas fa-hand-sparkles',
+        description: 'Cuidado completo das unhas das mãos, incluindo remoção de cutículas, modelagem, esmaltação e hidratação. Variedade de cores disponíveis.'
+    },
+    'escova': {
+        title: 'Escova',
+        category: 'Cabelo',
+        price: 'R$ 35,00',
+        icon: 'fas fa-wind',
+        description: 'Escova modeladora para deixar seus cabelos lisos, com movimento e brilho natural. Inclui lavagem com produtos específicos para seu tipo de cabelo.'
+    },
+    'sobrancelha': {
+        title: 'Design de Sobrancelha',
+        category: 'Estética',
+        price: 'R$ 20,00',
+        icon: 'fas fa-eye',
+        description: 'Modelagem e design personalizado de sobrancelhas com técnicas de depilação e definição para realçar o olhar e harmonizar o rosto.'
+    },
+    'hidratacao': {
+        title: 'Hidratação',
+        category: 'Cabelo',
+        price: 'R$ 60,00',
+        icon: 'fas fa-tint',
+        description: 'Tratamento intensivo de hidratação para cabelos ressecados e danificados. Utiliza máscaras nutritivas e produtos reparadores profissionais.'
+    },
+    'pedicure': {
+        title: 'Pedicure',
+        category: 'Unhas',
+        price: 'R$ 30,00',
+        icon: 'fas fa-spa',
+        description: 'Cuidado completo dos pés, incluindo remoção de calosidades, corte e esmaltação das unhas, além de hidratação e massagem relaxante.'
+    }
+};
+
+// Elementos do DOM
+const modal = document.getElementById('serviceModal');
+const schedulingPage = document.getElementById('schedulingPage');
+const serviceCards = document.querySelectorAll('.service-card');
+const closeBtn = document.querySelector('.close');
+const scheduleBtn = document.getElementById('scheduleBtn');
+const backBtn = document.getElementById('backBtn');
+const schedulingForm = document.querySelector('.scheduling-form');
+
+// Elementos do modal
+const modalIcon = document.getElementById('modalIcon');
+const modalTitle = document.getElementById('modalTitle');
+const modalCategory = document.getElementById('modalCategory');
+const modalPrice = document.getElementById('modalPrice');
+const modalDescription = document.getElementById('modalDescription');
+
+// Elementos da página de agendamento
+const schedulingServiceTitle = document.getElementById('schedulingServiceTitle');
+const schedulingServicePrice = document.getElementById('schedulingServicePrice');
+
+// Variável para armazenar o serviço selecionado
+let selectedService = null;
+
+// Função para abrir o modal
+function openModal(serviceKey) {
+    const service = servicesData[serviceKey];
+    if (!service) return;
+
+    selectedService = service;
+
+    // Atualizar conteúdo do modal
+    modalIcon.className = service.icon;
+    modalTitle.textContent = service.title;
+    modalCategory.textContent = service.category;
+    modalPrice.textContent = service.price;
+    modalDescription.textContent = service.description;
+
+    // Mostrar modal com animação
+    modal.style.display = 'block';
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
+}
+
+// Função para fechar o modal
+function closeModal() {
+    modal.style.opacity = '0';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+// Função para abrir a página de agendamento
+function openSchedulingPage() {
+    if (!selectedService) return;
+
+    // Atualizar informações do serviço na página de agendamento
+    schedulingServiceTitle.textContent = selectedService.title;
+    schedulingServicePrice.textContent = selectedService.price;
+
+    // Fechar modal
+    closeModal();
+
+    // Mostrar página de agendamento
+    setTimeout(() => {
+        schedulingPage.classList.remove('hidden');
+        schedulingPage.classList.add('active');
+    }, 300);
+}
+
+// Função para voltar da página de agendamento
+function goBackToServices() {
+    schedulingPage.classList.remove('active');
+    setTimeout(() => {
+        schedulingPage.classList.add('hidden');
+    }, 300);
+}
+
+// Função para formatar data para exibição
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR');
+}
+
+// Função para confirmar agendamento
+function confirmScheduling(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const clientName = document.getElementById('clientName').value;
+    const clientPhone = document.getElementById('clientPhone').value;
+    const appointmentDate = document.getElementById('appointmentDate').value;
+    const appointmentTime = document.getElementById('appointmentTime').value;
+
+    // Validação básica
+    if (!clientName || !clientPhone || !appointmentDate || !appointmentTime) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    // Simular confirmação do agendamento
+    const confirmationMessage = `
+Agendamento Confirmado! ✅
+
+Serviço: ${selectedService.title}
+Cliente: ${clientName}
+Telefone: ${clientPhone}
+Data: ${formatDate(appointmentDate)}
+Horário: ${appointmentTime}
+Valor: ${selectedService.price}
+
+Obrigado por escolher nosso salão!
+    `;
+
+    alert(confirmationMessage);
+
+    // Limpar formulário
+    event.target.reset();
+
+    // Voltar para a tela principal
+    goBackToServices();
+}
+
+// Função para definir data mínima (hoje)
+function setMinDate() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const dateInput = document.getElementById('appointmentDate');
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Definir data mínima
+    setMinDate();
+
+    // Event listeners para os cards de serviço
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceKey = this.getAttribute('data-service');
+            openModal(serviceKey);
+        });
+
+        // Adicionar efeito de toque para mobile
+        card.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+        });
+
+        card.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // Event listener para fechar modal
+    closeBtn.addEventListener('click', closeModal);
+
+    // Event listener para botão de agendar
+    scheduleBtn.addEventListener('click', openSchedulingPage);
+
+    // Event listener para botão voltar
+    backBtn.addEventListener('click', goBackToServices);
+
+    // Event listener para formulário de agendamento
+    schedulingForm.addEventListener('submit', confirmScheduling);
+
+    // Fechar modal clicando fora dele
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Prevenir scroll do body quando modal estiver aberto
+    modal.addEventListener('wheel', function(e) {
+        e.preventDefault();
+    });
+
+    // Adicionar suporte a gestos de swipe para voltar (mobile)
+    let startX = 0;
+    let startY = 0;
+
+    schedulingPage.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    });
+
+    schedulingPage.addEventListener('touchmove', function(e) {
+        if (!startX || !startY) return;
+
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+
+        const diffX = startX - currentX;
+        const diffY = startY - currentY;
+
+        // Se o movimento horizontal for maior que o vertical e for para a direita
+        if (Math.abs(diffX) > Math.abs(diffY) && diffX < -50) {
+            goBackToServices();
+        }
+
+        startX = 0;
+        startY = 0;
+    });
+});
+
+// Função para adicionar animação de loading nos botões
+function addLoadingAnimation(button, duration = 1000) {
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    button.disabled = true;
+
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }, duration);
+}
+
+// Melhorar a experiência do usuário com feedback visual
+scheduleBtn.addEventListener('click', function() {
+    addLoadingAnimation(this, 500);
+});
+
+// Adicionar validação em tempo real para o formulário
+document.getElementById('clientPhone').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    
+    if (value.length >= 11) {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (value.length >= 7) {
+        value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else if (value.length >= 3) {
+        value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    }
+    
+    e.target.value = value;
+});
+
+// Adicionar efeito de vibração para dispositivos móveis (se suportado)
+function vibrateDevice(pattern = [100]) {
+    if ('vibrate' in navigator) {
+        navigator.vibrate(pattern);
+    }
+}
+
+// Usar vibração quando clicar nos cards
+serviceCards.forEach(card => {
+    card.addEventListener('click', () => vibrateDevice([50]));
+});
+
+console.log('🎉 Aplicação do Salão de Beleza carregada com sucesso!');
+
+
+
+</script>
+

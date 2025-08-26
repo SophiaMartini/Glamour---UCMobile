@@ -27,29 +27,29 @@
         <div class="form">
                 <div class="input-entrada"> 
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="nome de usuário" required>
+                    <input id="user_name" type="text" placeholder="nome de usuário" required>
                 </div>
                 
                 <div class="input-entrada"> 
                     <i class="fa-solid fa-user"></i>
-                    <input type="email" placeholder="email ou número de telefone" required>
+                    <input id="login" type="text" placeholder="email ou número de telefone" required>
                 </div>
                 
                 <div class="input-entrada input-data"> 
-                    <input type="date" placeholder="" required>
+                    <input id="user_date" type="date" placeholder="" required>
                 </div>
                  
                 <div class="input-entrada"> 
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="senha" required>
+                    <input id="senha" type="password" placeholder="senha" required>                                         
                 </div>
 
                 <div class="input-entrada"> 
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="confirmar senha" required>
+                    <input id="senha" type="password" placeholder="confirmar senha" required>
                 </div>
                                 
-                <button type="submit" class="btn">Registrar</button>
+                <button type="submit" onclick="registrar()" class="btn">Registrar</button>
             <a href="login.html">
                 <button class="link">Já tenho uma conta</button>
             </a>

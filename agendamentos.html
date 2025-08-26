@@ -9,17 +9,58 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel=" stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendamentos.css">
     <script src="js/agendamentos.js" defer></script>
     <script src="js/todos.js" defer></script>
 </head>
-<body>
-    <main>
-    
-    
-        
+<body> <div id="navigation"></div>
+<main class="main-content">
+    <h2>Próximo agendamento</h2>
+    <div class="card">
+        <h3>Manicure <small style="float:right">Quarta, 13 jul</small></h3>
+        <p>Profissional: Lucia Andrade<br>15h30</p>
+        <button class="btn-remarcar" onclick="window.location.href='cancelar.html'">Remarcar ou cancelar</button>
+    </div>
 
-    <div id="navigation"></div>
-    </main>    
+    <button class="btn-agendar" onclick="window.location.href='agendar.html'">Agendar serviço</button>
+
+    <div class="anteriores">
+        <a href="historicoo.html" class="anteriores-header">
+            <i class="fas fa-history"></i> <strong>agendamentos anteriores</strong>
+        </a>
+
+        <div class="agendamento-passado">
+            <strong>Corte</strong> <span style="float:right">Segunda, 20 de jun</span>
+            <p>Profissional: Adriano Estevão<br>15h00</p>
+            <button class="btn-feedback">Feedback</button>
+        </div>
+
+        <div class="agendamento-passado">
+            <strong>Luzes</strong> <span style="float:right">terça, 21 de jun</span>
+            <p>Profissional: Mariana <br>10h00</p>
+            <button class="btn-feedback">Feedback</button>
+        </div>
+    </div>
+
+    <div class="modal" id="modalFeedback">
+        <div class="modal-content">
+            <h2>Deixe seu feedback</h2>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label for="star5"></label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4"></label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3"></label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2"></label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1"></label>
+            </div>
+            <textarea rows="4" placeholder="Escreva seu comentário..."></textarea>
+            <button class="btn-enviar">Enviar</button>
+        </div>
+    </div>
+</main>
 </body>
 </html>

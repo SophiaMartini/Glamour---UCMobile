@@ -1,0 +1,137 @@
+
+.icon-group {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-group .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: #fce3dc;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #d97c88;
+}
+ 
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.calendar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+ 
+.calendar-day {
+    text-align: center;
+    padding: 10px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 18%;
+    background-color: #fce3dc;
+}
+ 
+.calendar-day.active {
+    background-color: #c04e5b;
+    color: white;
+    font-weight: bold;
+}
+ 
+.calendar-day small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+.open-calendar {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: underline;
+    cursor: pointer;
+}
+ 
+.available-times {
+    margin-top: 20px;
+}
+ 
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+ 
+.time-slot {
+    padding: 15px;
+    text-align: center;
+    background-color: #fce3dc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+ 
+.time-slot.selected {
+    background-color: #c04e5b;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-schedule {
+    width: 100%;
+    padding: 15px;
+    background-color: #f28b8b;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+}
+ 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+footer button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #555;
+}
+
+footer button i {
+    font-size: 20px;
+    margin-bottom: 5px;
+}

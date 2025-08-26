@@ -12,6 +12,7 @@
     <link rel=" stylesheet" href="css/catalogo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+   <script src="js/mockData.js" defer></script>
     <script src="js/catalogo.js" defer></script>
     <script src="js/todos.js" defer></script>
 </head>
@@ -36,46 +37,76 @@
       <div class="carrossel-dots" id="carrossel-dots"></div>
     </section>
 
-    
+
     <section class="principais-servicos">
       <h2>Principais Serviços</h2>
+            
+      
 
       <div class="servicos-container">
 
-        <div class="servico-item">
-          <img src="" alt="">
+        <div class="prservico-item">
+          <img class="imgs_servico" src="assets/imgs/imagens_principais_produtos/Espaço (500 x 400 px) (1).png" alt="">
           <p>Corte de Cabelo</p>
         </div>
 
-        <div class="servico-item">
-          <img src="" alt="">
+        <div class="prservico-item">
+          <img class="imgs_servico" src="assets/imgs/imagens_principais_produtos/Espaço (500 x 400 px) (2).png" alt="">
           <p>Maquiagem</p>
         </div>
 
-        <div class="servico-item">
-          <img src="" alt="">
+        <div class="prservico-item">
+          <img src="assets/imgs/imagens_principais_produtos/Espaço (500 x 400 px).png" alt="">
           <p>Mani e Pedicure</p>
         </div>
 
-        <div class="servico-item" >
-          <img src="" alt="">
+        <div class="prservico-item" >
+          <img src="assets/imgs/imagens_principais_produtos/Espaço (500 x 400 px) (3).png" alt="">
           <p>SkinCare</p>
         </div>
 
       </div>
+    </section>  
+
+       <section class="section outros-servicos">
+      
+        <h2>Outros Serviços</h2>
+         <div id="otherServices" class="services-grid">
+<!--vai ser gerado pelo js aq os cards-->
+         </div>
+        </section>
+      
     </section>
 
-    <div class="modal" id="modal_servico">
-      <div class="modal-content">
-        <span class="fechar">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
+<!--modal de outros servicos-->
+<div class="modal" id="modal_servico" style="display:none;">
+    <div class="modal-content">
+      <div class="headermodal"> 
         <h3 id="titulo_servico"></h3>
-        <p id="detalhes_servico"></p>
-        <button id="btn_agendar">Agendar</button>
+        <span class="fechar">
+          <i class="fa fa-xmark"></i>
+        </span>
       </div>
+       
+        <img id="img_servico" src="" alt="">
+
+        <div class="categoria servico">
+            <p id="categoria_servico"></p>
+        </div>
+
+        <div class="detalhes">
+            <p id="detalhes_servico"></p>
+        </div>
+        
+        <div class="preco servico">
+      
+            <p id="preco_servico"></p>
+        </div>
+
+        <button id="btn_agendar">Quero Agendar</button>
     </div>
-    
+</div>
+
   </main>    
 </body>
 </html>

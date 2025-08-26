@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour - Gerenciamento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Tela Inicial -->
+    <div id="home-screen" class="screen active">
+        <header class="header">
+            <div class="logo">
+                <span class="logo">
+                    <img src="logo-nome.png" alt="">
+                </span>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-bell notification-icon"></i>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <h1 class="greeting">Olá!</h1>
+            
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="navigateTo('appointments-screen')">
+                    <span>Ver Agendamentos</span>
+                </button>
+                
+                <button class="action-btn secondary" onclick="navigateTo('professionals-screen')">
+                    <span>Gerenciar Profissionais</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tela de Agendamentos -->
+    <div id="appointments-screen" class="screen">
+        <header class="header">
+           <div class="logo">
+                <span class="logo">
+                    <img src="logo-nome.png" alt="">
+                </span>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-clock"></i>
+                <i class="fas fa-bell notification-icon"></i>
+            </div> 
+            
+        </header>
+        <div class="header-left">
+            <button class="back-btn" onclick="navigateTo('home-screen')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2 class="screen-title">Agendamentos para hoje</h2>
+        </div>
+       
+
+        <main class="main-content">
+            <div class="appointments-list" id="appointments-list">
+                <!-- Agendamentos serão inseridos dinamicamente -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Tela de Profissionais -->
+    <div id="professionals-screen" class="screen">
+        <header class="header">
+          <div class="logo">
+                <span class="logo">
+                    <img src="logo-nome.png" alt="">
+                </span>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-clock"></i>
+                <i class="fas fa-bell notification-icon"></i>
+            </div>
+        </header>
+     <div class="header-left">
+                <button class="back-btn" onclick="navigateTo('home-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 class="screen-title">Gerenciar Profissionais</h2>
+            </div>
+            
+        <main class="main-content">
+            <div class="professional-selector">
+                <select id="professional-dropdown" onchange="loadProfessionalData()">
+                    <option value="">Escolher Profissional</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+            <div id="professional-details" class="professional-details" style="display: none;">
+                <div class="rating-section">
+                    <h3>Avaliação Geral</h3>
+                    <div class="stars-container">
+                        <div class="stars" id="rating-stars">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <h3>feedbacks de serviços</h3>
+                    <div class="feedback-list" id="feedback-list">
+                        <!-- Feedbacks serão inseridos dinamicamente -->
+                    </div>
+                </div>
+
+                <div class="availability-section">
+                    <h3>Disponibilidade</h3>
+                    <div class="week-days">
+                        <div class="day-column" data-day="segunda">
+                            <div class="day-header">Segunda</div>
+                            <div class="time-slots" id="segunda-slots"></div>
+                        </div>
+                        <div class="day-column" data-day="terca">
+                            <div class="day-header">Terça</div>
+                            <div class="time-slots" id="terca-slots"></div>
+                        </div>
+                        <div class="day-column" data-day="quarta">
+                            <div class="day-header">Quarta</div>
+                            <div class="time-slots" id="quarta-slots"></div>
+                        </div>
+                        <div class="day-column" data-day="quinta">
+                            <div class="day-header">Quinta</div>
+                            <div class="time-slots" id="quinta-slots"></div>
+                        </div>
+                        <div class="day-column" data-day="sexta">
+                            <div class="day-header">Sexta</div>
+                            <div class="time-slots" id="sexta-slots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tela de Detalhes do Agendamento -->
+    <div id="appointment-details-screen" class="screen">
+        <header class="header">
+            <div class="logo">
+                <span class="logo">
+                    <img src="logo-nome.png" alt="">
+                </span>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-bell notification-icon"></i>
+            </div>
+        </header>
+
+        <div class="header-left">
+            <button class="back-btn" onclick="navigateTo('appointments-screen')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2 class="screen-title">Detalhes</h2>
+        </div>
+
+        <main class="main-content">
+            <div class="appointment-details" id="appointment-details-content">
+                <!-- Detalhes serão inseridos dinamicamente -->
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

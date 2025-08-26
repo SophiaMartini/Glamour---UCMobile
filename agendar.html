@@ -3,23 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agendar</title>
+    <title>agendamentos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel=" stylesheet" href="css/agendar.css">
+    <link rel="stylesheet" href="css/agendar.css">
     <script src="js/agendar.js" defer></script>
     <script src="js/todos.js" defer></script>
 </head>
-<body>
-<main>
+<body> <div id="navigation"></div> 
+ <main class="main-content">
+         <form id="agendarForm">
+            <div>
+                <label for="servico" class="form-label">Serviço</label>
+                <select id="servico" class="form-select" name="servico">
+                    <option value="">Selecione um serviço...</option>
+                    <option value="corte">Corte</option>
+                    <option value="luzes">Luzes</option>
+                    <option value="manicure">Manicure</option>
+                    <option value="pedicure">Pedicure</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="periodo" class="form-label">Período</label>
+                <select id="periodo" class="form-select" name="periodo">
+                    <option value="">Selecione um período...</option>
+                    <option value="manha">Manhã (09h - 12h)</option>
+                    <option value="tarde">Tarde (13h - 18h)</option>
+                </select>
+            </div>
 
+            <div>
+                <label for="profissional" class="form-label">Profissional disponível</label>
+                <select id="profissional" class="form-select" name="profissional">
+                    <option value="">Selecione um profissional...</option>
+                    <option value="lucia">Lucia Andrade</option>
+                    <option value="adriano">Adriano Estevão</option>
+                    <option value="mariana">Mariana</option>
+                </select>
+            </div>
+            
+            <div class="calendar">
+                <div class="calendar-day active" data-day="27">
+                    <span>Seg</span>
+                    <small>27</small>
+                </div>
+                <div class="calendar-day" data-day="28">
+                    <span>Ter</span>
+                    <small>28</small>
+                </div>
+                <div class="calendar-day" data-day="29">
+                    <span>Qua</span>
+                    <small>29</small>
+                </div>
+                <div class="calendar-day" data-day="30">
+                    <span>Qui</span>
+                    <small>30</small>
+                </div>
+                <div class="calendar-day" data-day="31">
+                    <span>Sex</span>
+                    <small>31</small>
+                </div>
+            </div>
+            <p class="open-calendar">abrir calendário</p>
 
+            <div class="available-times">
+                <h3>Horários disponíveis</h3>
+                <div class="time-grid" id="timeSlots">
+                </div>
+            </div>
 
-    <!--footer-->
-    <div id="navigation"></div>
-    </main>    
+            <button type="submit" class="btn-schedule">Agendar</button>
+        </form>
+    </main>
+
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel=" stylesheet" href="css/agendar.css">
+    <script src="js/agendar.js" defer></script>
+    <script src="js/todos.js" defer></script>
+</head>
+<body>  <div id="navigation"></div>
+<main>
+        <section class="section">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                <button class="header-icon" onclick="goBack()" style="background: #f0f0f0;">
+                    <i class="fas fa-arrow-left" style="color: #333;"></i>
+                </button>
+                <h1 style="margin: 0; font-size: 24px;">Próximo agendamento</h1>
+            </div>
+        </section>
+
+        <!-- Card de Avaliação -->
+        <section class="section">
+            <div class="feedback-card">
+                <div class="feedback-header">
+                    <h2>Avaliar Serviço</h2>
+                </div>
+                
+                <div class="service-info" id="serviceInfo">
+                    <!-- Será carregado via JavaScript -->
+                </div>
+
+                <form id="feedbackForm">
+                    <!-- Sistema de Avaliação -->
+                    <div class="rating-section">
+                        <div class="rating-stars" id="ratingStars">
+                            <i class="fas fa-star star" data-rating="1"></i>
+                            <i class="fas fa-star star" data-rating="2"></i>
+                            <i class="fas fa-star star" data-rating="3"></i>
+                            <i class="fas fa-star star" data-rating="4"></i>
+                            <i class="fas fa-star star" data-rating="5"></i>
+                        </div>
+                        <p class="rating-text" id="ratingText">Toque nas estrelas para avaliar</p>
+                    </div>
+
+                    <!-- Comentário -->
+                    <div class="form-group">
+                        <label class="form-label">Escreva aqui seu feedback:</label>
+                        <textarea 
+                            id="feedbackComment" 
+                            class="form-textarea" 
+                            rows="4" 
+                            placeholder="Conte como foi sua experiência..."
+                            maxlength="500"
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/500 caracteres
+                        </div>
+                    </div>
+
+                    <!-- Botão de Enviar -->
+                    <button type="submit" class="btn-feedback" id="submitButton" disabled>
+                        <i class="fas fa-star" style="margin-right: 8px;"></i>
+                        Enviar Feedback
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>    
+</body>
+</html>

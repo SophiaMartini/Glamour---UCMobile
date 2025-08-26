@@ -1,0 +1,512 @@
+
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salão de Beleza - Serviços</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body><div id="navigation"></div>
+    <style>
+      
+.search-input, .filter-select {
+    display: flex;
+    align-items: center;
+    background-color: #ecdbc4;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #a97449;
+    padding: 10px 12px;
+    width: fit-content; /* Largura se ajusta ao conteúdo (input + ícone) */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-filter i{
+    color: #a97449;
+    margin-right: 10px;
+}
+
+.search-filter input, select {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    outline: none;
+    width: 200px;
+}
+
+.search-filter input::placeholder {
+    color: #a97449;
+}
+
+
+.search-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  max-width: 600px;
+}
+
+ </style>
+    <main>
+    <section class="search-filter">
+       <div class="search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Procurar configuração">
+            </div>
+    </section>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-cut"></i> Salão de Beleza</h1>
+            <p>Nossos Serviços</p>
+        </header>
+
+        <!-- Services Grid -->
+        <main class="services-container">
+            <div class="service-card" data-service="corte-cabelo">
+                <div class="service-image">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Corte de Cabelo</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 45,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="manicure">
+                <div class="service-image">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Manicure</h3>
+                    <p class="service-category">Unhas</p>
+                    <p class="service-price">R$ 25,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="escova">
+                <div class="service-image">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Escova</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 35,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="sobrancelha">
+                <div class="service-image">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Design de Sobrancelha</h3>
+                    <p class="service-category">Estética</p>
+                    <p class="service-price">R$ 20,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="hidratacao">
+                <div class="service-image">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Hidratação</h3>
+                    <p class="service-category">Cabelo</p>
+                    <p class="service-price">R$ 60,00</p>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="pedicure">
+                <div class="service-image">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Pedicure</h3>
+                    <p class="service-category">Unhas</p>
+                    <p class="service-price">R$ 30,00</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div id="serviceModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-header">
+                    <div class="modal-image">
+                        <i id="modalIcon" class="fas fa-cut"></i>
+                    </div>
+                    <h2 id="modalTitle">Título do Serviço</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-info">
+                        <p class="modal-category">
+                            <i class="fas fa-tag"></i>
+                            <span id="modalCategory">Categoria</span>
+                        </p>
+                        <p class="modal-price">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span id="modalPrice">R$ 0,00</span>
+                        </p>
+                    </div>
+                    <div class="modal-description">
+                        <h4>Descrição</h4>
+                        <p id="modalDescription">Descrição do serviço...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="scheduleBtn" class="schedule-btn">
+                        <i class="fas fa-calendar-plus"></i>
+                        Agendar Serviço
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scheduling Page (Hidden by default) -->
+        <div id="schedulingPage" class="scheduling-page hidden">
+            <div class="scheduling-header">
+                <button id="backBtn" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </button>
+                <h2>Agendar Serviço</h2>
+            </div>
+            <div class="scheduling-content">
+                <div class="selected-service">
+                    <h3 id="schedulingServiceTitle">Serviço Selecionado</h3>
+                    <p id="schedulingServicePrice">R$ 0,00</p>
+                </div>
+                <form class="scheduling-form">
+                    <div class="form-group">
+                        <label for="clientName">Nome:</label>
+                        <input type="text" id="clientName" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Telefone:</label>
+                        <input type="tel" id="clientPhone" placeholder="(11) 99999-9999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentDate">Data:</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentTime">Horário:</label>
+                        <select id="appointmentTime" required>
+                            <option value="">Selecione um horário</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="confirm-btn">
+                        <i class="fas fa-check"></i>
+                        Confirmar Agendamento
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  <script>  document.addEventListener('DOMContentLoaded', function() {
+            // Dados dos serviços
+            const servicesData = {
+                'corte-cabelo': {
+                    title: 'Corte de Cabelo',
+                    category: 'Cabelo',
+                    price: 'R$ 45,00',
+                    icon: 'fas fa-cut',
+                    description: 'Corte moderno e personalizado de acordo com o formato do seu rosto e estilo pessoal. Inclui lavagem, corte e finalização com produtos profissionais.'
+                },
+                'manicure': {
+                    title: 'Manicure',
+                    category: 'Unhas',
+                    price: 'R$ 25,00',
+                    icon: 'fas fa-hand-sparkles',
+                    description: 'Cuidado completo das unhas das mãos, incluindo remoção de cutículas, modelagem, esmaltação e hidratação. Variedade de cores disponíveis.'
+                },
+                'escova': {
+                    title: 'Escova',
+                    category: 'Cabelo',
+                    price: 'R$ 35,00',
+                    icon: 'fas fa-wind',
+                    description: 'Escova modeladora para deixar seus cabelos lisos, com movimento e brilho natural. Inclui lavagem com produtos específicos para seu tipo de cabelo.'
+                },
+                'sobrancelha': {
+                    title: 'Design de Sobrancelha',
+                    category: 'Estética',
+                    price: 'R$ 20,00',
+                    icon: 'fas fa-eye',
+                    description: 'Modelagem e design personalizado de sobrancelhas com técnicas de depilação e definição para realçar o olhar e harmonizar o rosto.'
+                },
+                'hidratacao': {
+                    title: 'Hidratação',
+                    category: 'Cabelo',
+                    price: 'R$ 60,00',
+                    icon: 'fas fa-tint',
+                    description: 'Tratamento intensivo de hidratação para cabelos ressecados e danificados. Utiliza máscaras nutritivas e produtos reparadores profissionais.'
+                },
+                'pedicure': {
+                    title: 'Pedicure',
+                    category: 'Unhas',
+                    price: 'R$ 30,00',
+                    icon: 'fas fa-spa',
+                    description: 'Cuidado completo dos pés, incluindo remoção de calosidades, corte e esmaltação das unhas, além de hidratação e massagem relaxante.'
+                }
+            };
+
+            // Elementos do DOM
+            const modal = document.getElementById('serviceModal');
+            const schedulingPage = document.getElementById('schedulingPage');
+            const serviceCards = document.querySelectorAll('.service-card');
+            const closeBtn = document.querySelector('.close');
+            const scheduleBtn = document.getElementById('scheduleBtn');
+            const backBtn = document.getElementById('backBtn');
+            const schedulingForm = document.querySelector('.scheduling-form');
+
+            // Elementos do modal
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalDescription = document.getElementById('modalDescription');
+
+            // Elementos da página de agendamento
+            const schedulingServiceTitle = document.getElementById('schedulingServiceTitle');
+            const schedulingServicePrice = document.getElementById('schedulingServicePrice');
+
+            // Variável para armazenar o serviço selecionado
+            let selectedService = null;
+
+            // Função para abrir o modal
+            function openModal(serviceKey) {
+                const service = servicesData[serviceKey];
+                if (!service) return;
+
+                selectedService = service;
+
+                // Atualizar conteúdo do modal
+                modalIcon.className = service.icon;
+                modalTitle.textContent = service.title;
+                modalCategory.textContent = service.category;
+                modalPrice.textContent = service.price;
+                modalDescription.textContent = service.description;
+
+                // Mostrar modal com animação
+                modal.style.display = 'block';
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+            }
+
+            // Função para fechar o modal
+            function closeModal() {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+
+            // Função para abrir a página de agendamento
+            function openSchedulingPage() {
+                if (!selectedService) return;
+
+                // Atualizar informações do serviço na página de agendamento
+                schedulingServiceTitle.textContent = selectedService.title;
+                schedulingServicePrice.textContent = selectedService.price;
+
+                // Fechar modal
+                closeModal();
+
+                // Mostrar página de agendamento
+                setTimeout(() => {
+                    schedulingPage.classList.remove('hidden');
+                    schedulingPage.classList.add('active');
+                }, 300);
+            }
+
+            // Função para voltar da página de agendamento
+            function goBackToServices() {
+                schedulingPage.classList.remove('active');
+                setTimeout(() => {
+                    schedulingPage.classList.add('hidden');
+                }, 300);
+            }
+
+            // Função para formatar data para exibição
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('pt-BR');
+            }
+
+            // Função para confirmar agendamento
+            function confirmScheduling(event) {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const clientName = document.getElementById('clientName').value;
+                const clientPhone = document.getElementById('clientPhone').value;
+                const appointmentDate = document.getElementById('appointmentDate').value;
+                const appointmentTime = document.getElementById('appointmentTime').value;
+
+                // Validação básica
+                if (!clientName || !clientPhone || !appointmentDate || !appointmentTime) {
+                    alert('Por favor, preencha todos os campos.');
+                    return;
+                }
+
+                // Simular confirmação do agendamento
+                const confirmationMessage = `\nAgendamento Confirmado! ✅\n\nServiço: ${selectedService.title}\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${formatDate(appointmentDate)}\nHorário: ${appointmentTime}\nValor: ${selectedService.price}\n\nObrigado por escolher nosso salão!\n    `;
+
+                alert(confirmationMessage);
+
+                // Limpar formulário
+                event.target.reset();
+
+                // Voltar para a tela principal
+                goBackToServices();
+            }
+
+            // Função para definir data mínima (hoje)
+            function setMinDate() {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const dateInput = document.getElementById('appointmentDate');
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+            }
+
+            // Event listeners
+            // Definir data mínima
+            setMinDate();
+
+            // Event listeners para os cards de serviço
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceKey = this.getAttribute('data-service');
+                    openModal(serviceKey);
+                });
+
+                // Adicionar efeito de toque para mobile
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+
+                card.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Event listener para fechar modal
+            closeBtn.addEventListener('click', closeModal);
+
+            // Event listener para botão de agendar
+            scheduleBtn.addEventListener('click', openSchedulingPage);
+
+            // Event listener para botão voltar
+            backBtn.addEventListener('click', goBackToServices);
+
+            // Event listener para formulário de agendamento
+            schedulingForm.addEventListener('submit', confirmScheduling);
+
+            // Fechar modal clicando fora dele
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Prevenir scroll do body quando modal estiver aberto
+            modal.addEventListener('wheel', function(e) {
+                e.preventDefault();
+            });
+
+            // Adicionar suporte a gestos de swipe para voltar (mobile)
+            let startX = 0;
+            let startY = 0;
+
+            schedulingPage.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            schedulingPage.addEventListener('touchmove', function(e) {
+                if (!startX || !startY) return;
+
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+
+                const diffX = startX - currentX;
+                const diffY = startY - currentY;
+
+                // Se o movimento horizontal for maior que o vertical e for para a direita
+                if (Math.abs(diffX) > Math.abs(diffY) && diffX < -50) {
+                    goBackToServices();
+                }
+
+                startX = 0;
+                startY = 0;
+            });
+
+            // Função para adicionar animação de loading nos botões
+            function addLoadingAnimation(button, duration = 1000) {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                button.disabled = true;
+
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, duration);
+            }
+
+            // Melhorar a experiência do usuário com feedback visual
+            scheduleBtn.addEventListener('click', function() {
+                addLoadingAnimation(this, 500);
+            });
+
+            // Adicionar validação em tempo real para o formulário
+            document.getElementById('clientPhone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length >= 11) {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                } else if (value.length >= 7) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+                } else if (value.length >= 3) {
+                    value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+                }
+                
+                e.target.value = value;
+            });
+
+            // Adicionar efeito de vibração para dispositivos móveis (se suportado)
+            function vibrateDevice(pattern = [100]) {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(pattern);
+                }
+            }
+
+            // Usar vibração quando clicar nos cards
+            serviceCards.forEach(card => {
+                card.addEventListener('click', () => vibrateDevice([50]));
+            });
+
+            console.log('🎉 Aplicação do Salão de Beleza carregada com sucesso!');
+        });
+  </script>
+</body>
+</html>

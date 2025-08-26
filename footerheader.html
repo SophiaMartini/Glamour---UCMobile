@@ -8,20 +8,23 @@
     <title>footerbar</title>
     <link rel="stylesheet" href="css/reset.css">
 </head>
-
 <body>
 <main>
     
 <header id="header">
     <a href="catalogo.html">
-        <span class="header">
-            <img src="assets/logo/logo-toda-menor.png" alt="logo do ngc">
-        </span>
+        <button>
+            <span class="header">
+                <img src="assets/logo/logo-toda-menor.png" alt="logo do ngc">
+            </span>
+        </button>
     </a>
     <a href="notificacoes.html">
-        <span class="header">
-            <i class="fa-regular fa-bell"></i>
-        </span>
+        <button>
+              <span class="header-icon" onclick="showNotifications()" title="Notificações">
+                       <i class="fa-regular fa-bell"></i>
+              </span>
+        </button>
     </a>
 </header>
 
@@ -29,16 +32,19 @@
   <!--footer-->  
     <div id="navigation">
         <ul>
-            <li class="list" data-match="catalogo.html">
+           <button>
+            <li class="list" data-match="catalogo.html, todos-servicos.html"> 
                 <a href="catalogo.html">
                     <span class="text">Catálogo</span>
                     <span class="circle"><div class="indicator"></div></span>
                      <span class="icon">
                         <i class="fa fa-list"></i>
-                    </span>
+                    </span> 
                 </a>
-                
             </li>
+            </button>
+
+            <button>
             <li class="list"data-match="agendamentos.html, agendar.html, cancelar-remarcar.html, historico.html">
                 <a href="agendamentos.html">
                     <span class="text">Agendamento</span>
@@ -47,8 +53,10 @@
                         <i class="fa fa-calendar-days"></i>
                     </span>
                 </a>
-                
             </li>
+            </button>
+
+            <button>
             <li class="list" data-match="perfil.html">
                 <a href="perfil.html">
                     <span class="text">Perfil</span>
@@ -58,7 +66,7 @@
                     </span>
                 </a>
             </li>
-            
+            </button>
     
         </ul>
     </div> 

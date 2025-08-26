@@ -13,13 +13,45 @@
     <script src="js/cancelar-remarcar.js" defer></script>
     <script src="js/todos.js" defer></script>
 </head>
-<body>
-    <main>
-    
-    
+<body>    <div id="navigation"></div>
+  <main>  
+    <div class="container">
+        <h1>Gerenciar Meus Agendamentos</h1>
         
-    <!--footer-->
-    <div id="navigation"></div>
-    </main>    
+        <div class="appointment-card" id="agendamento">
+            <h2>Seu Próximo Agendamento</h2>
+            <p><strong>Serviço:</strong> Manicure</p>
+            <p><strong>Profissional:</strong> Lucia Andrade</p>
+            <p><strong>Data:</strong> Quarta, 13 de julho</p>
+            <p><strong>Horário:</strong> 15:30</p>
+            
+            <div class="actions">
+                <a href="proagendamento.html" class="btn btn-reschedule">Reagendar</a>
+                <button class="btn btn-cancel" id="btnCancelar">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Instruções</h3>
+            <p>Para <strong>reagendar</strong>, você será redirecionado para a nossa agenda para escolher um novo horário.</p>
+            <p>Para <strong>cancelar</strong>, será solicitado que você confirme a ação.</p>
+        </div>
+    </div>
+
+    <div id="modalConfirmacao" class="modal">
+        <div class="modal-content">
+            <p>Tem certeza que deseja cancelar?</p>
+            <div class="modal-actions">
+                <button id="btnTenhoCerteza" class="btn btn-reschedule">Tenho Certeza</button>
+                <button id="btnVoltar" class="btn btn-cancel">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mensagemSucesso" class="mensagem-sucesso">
+        Cancelado com sucesso!
+    </div>
+
+    </main>
 </body>
 </html>

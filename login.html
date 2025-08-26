@@ -28,17 +28,17 @@
   
     <div class="input-entrada"> 
         <i class="fa-solid fa-user"></i>
-        <input type="email" placeholder="email ou número de telefone" required>
+        <input id="login" type="text" placeholder="email ou número de telefone" required>
     </div>
 
     <div class="input-entrada"> 
         <i class="fa-solid fa-lock"></i>
-        <input type="password" placeholder="senha" required>
+        <input id="senha" type="password" placeholder="senha" required>
     </div>
 
     <label><input type="checkbox">Lembre-se de mim</label>
 
-    <button class="btn" type="submit">ENTRAR</button>
+    <button class="btn" onclick="logar()" type="submit">ENTRAR</button>
   
   <div class="row">
       <a href="registrar.html"><button class="row">Não tenho conta</button></a>
